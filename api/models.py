@@ -8,5 +8,5 @@ class Article(models.Model):
     created_at = models.DateField() # 創建時間
     updated_at = models.DateField() # 更新時間
     
-    def __str__(self):
-        return self.title
+    class Meta:
+        db_table = "articles"
