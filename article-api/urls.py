@@ -19,7 +19,7 @@ from rest_framework.routers import DefaultRouter
 from api import views
 
 router = DefaultRouter(trailing_slash=False)
-router.register('article', views.ArticleViewSet,basename='article')
+router.register('articles', views.ArticleViewSet, basename='article')
 
 urlpatterns = [
     url('admin/', admin.site.urls),

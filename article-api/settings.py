@@ -88,6 +88,7 @@ DATABASES = {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'USER': 'root',
 #         'NAME': 'article_api',
+#         'HOST': '127.0.0.1',
 #     },
 # }
 
