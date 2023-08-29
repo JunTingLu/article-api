@@ -74,27 +74,30 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'article-api.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+# mysql
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
+#         'ENGINE': 'django.db.backends.mysql',
+#         'USER': 'root',
+#         'NAME': 'article_api',
+#         'PASSWORD': 'root',    
+#         'HOST': '',                           
+#         'PORT': '3306',  
+#     },
 # }
 
+# postsql
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'USER': 'root',
         'NAME': 'article_api',
         'PASSWORD': 'root',    
         'HOST': '',                           
-        'PORT': '3306',  
+        'PORT': '5433',  
     },
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -138,3 +141,12 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}

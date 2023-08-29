@@ -1,20 +1,23 @@
 from api.models import Article
 from api.serializers import ArticleSerializer
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 from django.shortcuts import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here. (創建api)
 class ArticleViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
 
+    # 序列化數據
     def list(self, request):
-        queryset = Article.objects.all()
+        queryset = Article.objects.all() # 不可省略
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
+    
+    # pk is primary key
     def retrieve(self, request, pk=None):
         article = get_object_or_404(self.queryset, pk=pk)
         serializer = self.serializer_class(article)

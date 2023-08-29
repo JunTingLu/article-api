@@ -15,13 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
+from django.urls import path
 from rest_framework.routers import DefaultRouter
+from rest_framework import routers, serializers, viewsets
 from api import views
+from django.contrib.auth.models import User
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
 
+# training_slash True -> 在服務器啟動的網址後會自動加上"\"
 router = DefaultRouter(trailing_slash=False)
 router.register('articles', views.ArticleViewSet, basename='article')
 
 urlpatterns = [
     url('admin/', admin.site.urls),
     url('api/', include(router.urls)),
+    path('api/token', TokenObtainPairView.as_view(), name='obtain_token'),
+    path('api/token/refresh', TokenRefreshView.as_view(), name='refresh_token'),
+    path('api/token/verify', TokenVerifyView.as_view(), name='verify_token'),
 ]
