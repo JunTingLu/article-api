@@ -90,11 +90,11 @@ WSGI_APPLICATION = 'article-api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'root',
-        'NAME': 'article_api',
+        'NAME': 'article',  #資料庫名稱
+        'USER': 'postgres',  #資料庫帳號
         'PASSWORD': 'root',    
-        'HOST': '',                           
-        'PORT': '5433',  
+        'HOST': 'localhost',                           
+        'PORT': '5432',  
     },
 }
 
