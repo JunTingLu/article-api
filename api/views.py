@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 
 # Create your views here. (創建api)
 class ArticleViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated] #set permission
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
 
