@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import pymysql
-pymysql.install_as_MySQLdb()
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,15 +88,16 @@ WSGI_APPLICATION = 'article-api.wsgi.application'
 #     },
 # }
 
+
 # postsql
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'article',  #資料庫名稱
-        'USER': 'postgres',  #資料庫帳號
-        'PASSWORD': 'root',    
-        'HOST': 'postgres',                           
-        'PORT': '5432',  
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_DATABASE'),
+        'USER': os.getenv('DB_USERNAME'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     },
 }
 
