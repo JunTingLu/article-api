@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  app:
+    container_name: article-api
+    build: .
+    restart: always
+    depends_on:
+      - postgres
+    volumes:
+      - .:/var/www
+    ports:
+      - "8000:8000"
+    networks:
+      - backend
+
+  postgres:
+    image: postgres:latest
+    container_name: article-api-postgres
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    environment:
+      POSTGRES_DB: article
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+
+networks:
+  backend:
+
+volumes:
+  postgres:

@@ -93,7 +93,7 @@ DATABASES = {
         'NAME': 'article',  #資料庫名稱
         'USER': 'postgres',  #資料庫帳號
         'PASSWORD': 'root',    
-        'HOST': 'localhost',                           
+        'HOST': 'postgres',                           
         'PORT': '5432',  
     },
 }
