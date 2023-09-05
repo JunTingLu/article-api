@@ -24,14 +24,20 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
-# training_slash True -> 在服務器啟動的網址後會自動加上"\"
+# 當 training_slash 為 True 時，在服務器啟動的網址後會自動加上 "\" 
 router = DefaultRouter(trailing_slash=False)
+# 將 view 中定義的 ArticleViewSet 映射至 url，並重新導向到 127.0.0.1:8000/api/articles 
 router.register('articles', views.ArticleViewSet, basename='article')
 
 urlpatterns = [
+    # 管理者相關端點
     url('admin/', admin.site.urls),
+    # 其他所有端點
     url('api/', include(router.urls)),
+    # 取得 token 端點
     path('api/token', TokenObtainPairView.as_view(), name='obtain_token'),
+    # 刷新 token 端點
     path('api/token/refresh', TokenRefreshView.as_view(), name='refresh_token'),
+    # 驗證 token 端點
     path('api/token/verify', TokenVerifyView.as_view(), name='verify_token'),
 ]

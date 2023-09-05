@@ -1,5 +1,5 @@
 from django.db import models
-    # Create your models here.
+# Create your models here.
 class Article(models.Model):
     title = models.CharField(max_length = 10) # 標題
     content = models.TextField() # 文章內容
@@ -8,4 +8,4 @@ class Article(models.Model):
     updated_at = models.DateField() # 更新時間
     
     class Meta:
-        db_table = "articles"
+        db_table = "articles" # 資料庫名稱
